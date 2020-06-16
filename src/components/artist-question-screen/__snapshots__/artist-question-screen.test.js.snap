@@ -76,7 +76,9 @@ exports[`Render renderer 1`] = `
         <div
           className="track__status"
         >
-          <audio />
+          <audio
+            src="audio_src"
+          />
         </div>
       </div>
     </div>
@@ -88,9 +90,33 @@ exports[`Render renderer 1`] = `
       >
         <input
           className="artist__input visually-hidden"
-          defaultValue="artist-1"
+          defaultValue="answer-0"
+          id="answer-0"
+          name="answer"
+          onChange={[Function]}
+          type="radio"
+        />
+        <label
+          className="artist__name"
+          htmlFor="answer-0"
+        >
+          <img
+            alt="John Snow"
+            className="artist__picture"
+            src="avatar_url_1"
+          />
+          John Snow
+        </label>
+      </div>
+      <div
+        className="artist"
+      >
+        <input
+          className="artist__input visually-hidden"
+          defaultValue="answer-1"
           id="answer-1"
           name="answer"
+          onChange={[Function]}
           type="radio"
         />
         <label
@@ -98,11 +124,11 @@ exports[`Render renderer 1`] = `
           htmlFor="answer-1"
         >
           <img
-            alt="Пелагея"
+            alt="Jack Daniels"
             className="artist__picture"
-            src="http://placehold.it/134x134"
+            src="avatar_url_2"
           />
-          Пелагея
+          Jack Daniels
         </label>
       </div>
       <div
@@ -110,9 +136,10 @@ exports[`Render renderer 1`] = `
       >
         <input
           className="artist__input visually-hidden"
-          defaultValue="artist-2"
+          defaultValue="answer-2"
           id="answer-2"
           name="answer"
+          onChange={[Function]}
           type="radio"
         />
         <label
@@ -120,33 +147,11 @@ exports[`Render renderer 1`] = `
           htmlFor="answer-2"
         >
           <img
-            alt="Пелагея"
+            alt="Jim Beam"
             className="artist__picture"
-            src="http://placehold.it/134x134"
+            src="avatar_url_3"
           />
-          Краснознаменная дивизия имени моей бабушки
-        </label>
-      </div>
-      <div
-        className="artist"
-      >
-        <input
-          className="artist__input visually-hidden"
-          defaultValue="artist-3"
-          id="answer-3"
-          name="answer"
-          type="radio"
-        />
-        <label
-          className="artist__name"
-          htmlFor="answer-3"
-        >
-          <img
-            alt="Пелагея"
-            className="artist__picture"
-            src="http://placehold.it/134x134"
-          />
-          Lorde
+          Jim Beam
         </label>
       </div>
     </form>

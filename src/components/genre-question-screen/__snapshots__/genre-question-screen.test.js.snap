@@ -65,6 +65,7 @@ exports[`Render renderer 1`] = `
     </h2>
     <form
       className="game__tracks"
+      onSubmit={[Function]}
     >
       <div
         className="track"
@@ -76,7 +77,42 @@ exports[`Render renderer 1`] = `
         <div
           className="track__status"
         >
-          <audio />
+          <audio
+            src="audio_src"
+          />
+        </div>
+        <div
+          className="game__answer"
+        >
+          <input
+            className="game__input visually-hidden"
+            defaultValue="answer-0"
+            id="answer-0"
+            name="answer"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <label
+            className="game__check"
+            htmlFor="answer-0"
+          >
+            Отметить
+          </label>
+        </div>
+      </div>
+      <div
+        className="track"
+      >
+        <button
+          className="track__button track__button--play"
+          type="button"
+        />
+        <div
+          className="track__status"
+        >
+          <audio
+            src="audio_src"
+          />
         </div>
         <div
           className="game__answer"
@@ -86,6 +122,7 @@ exports[`Render renderer 1`] = `
             defaultValue="answer-1"
             id="answer-1"
             name="answer"
+            onChange={[Function]}
             type="checkbox"
           />
           <label
@@ -106,51 +143,24 @@ exports[`Render renderer 1`] = `
         <div
           className="track__status"
         >
-          <audio />
+          <audio
+            src="audio_src"
+          />
         </div>
         <div
           className="game__answer"
         >
           <input
             className="game__input visually-hidden"
-            defaultValue="answer-1"
+            defaultValue="answer-2"
             id="answer-2"
             name="answer"
+            onChange={[Function]}
             type="checkbox"
           />
           <label
             className="game__check"
             htmlFor="answer-2"
-          >
-            Отметить
-          </label>
-        </div>
-      </div>
-      <div
-        className="track"
-      >
-        <button
-          className="track__button track__button--pause"
-          type="button"
-        />
-        <div
-          className="track__status"
-        >
-          <audio />
-        </div>
-        <div
-          className="game__answer"
-        >
-          <input
-            className="game__input visually-hidden"
-            defaultValue="answer-1"
-            id="answer-3"
-            name="answer"
-            type="checkbox"
-          />
-          <label
-            className="game__check"
-            htmlFor="answer-3"
           >
             Отметить
           </label>
@@ -166,21 +176,24 @@ exports[`Render renderer 1`] = `
         <div
           className="track__status"
         >
-          <audio />
+          <audio
+            src="audio_src"
+          />
         </div>
         <div
           className="game__answer"
         >
           <input
             className="game__input visually-hidden"
-            defaultValue="answer-1"
-            id="answer-4"
+            defaultValue="answer-3"
+            id="answer-3"
             name="answer"
+            onChange={[Function]}
             type="checkbox"
           />
           <label
             className="game__check"
-            htmlFor="answer-4"
+            htmlFor="answer-3"
           >
             Отметить
           </label>
