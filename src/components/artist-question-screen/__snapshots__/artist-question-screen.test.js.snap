@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render renderer 1`] = `
+exports[`Render ArtistQuestionScreen 1`] = `
 <section
   className="game game--artist"
 >
@@ -70,15 +70,15 @@ exports[`Render renderer 1`] = `
         className="track"
       >
         <button
-          className="track__button track__button--play"
+          className="track__button track__button--pause"
+          disabled={true}
+          onClick={[Function]}
           type="button"
         />
         <div
           className="track__status"
         >
-          <audio
-            src="audio_src"
-          />
+          <audio />
         </div>
       </div>
     </div>

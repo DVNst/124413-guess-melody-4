@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render renderer 1`] = `
+exports[`Render GenreQuestionScreen 1`] = `
 <section
   className="game game--genre"
 >
@@ -72,14 +72,14 @@ exports[`Render renderer 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
           type="button"
         />
         <div
           className="track__status"
         >
-          <audio
-            src="audio_src"
-          />
+          <audio />
         </div>
         <div
           className="game__answer"
@@ -104,15 +104,15 @@ exports[`Render renderer 1`] = `
         className="track"
       >
         <button
-          className="track__button track__button--play"
+          className="track__button track__button--pause"
+          disabled={true}
+          onClick={[Function]}
           type="button"
         />
         <div
           className="track__status"
         >
-          <audio
-            src="audio_src"
-          />
+          <audio />
         </div>
         <div
           className="game__answer"
@@ -138,14 +138,14 @@ exports[`Render renderer 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
           type="button"
         />
         <div
           className="track__status"
         >
-          <audio
-            src="audio_src"
-          />
+          <audio />
         </div>
         <div
           className="game__answer"
@@ -171,14 +171,14 @@ exports[`Render renderer 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
           type="button"
         />
         <div
           className="track__status"
         >
-          <audio
-            src="audio_src"
-          />
+          <audio />
         </div>
         <div
           className="game__answer"
