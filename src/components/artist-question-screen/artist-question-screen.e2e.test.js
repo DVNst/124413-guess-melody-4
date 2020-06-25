@@ -1,12 +1,10 @@
-import React from "react";
-import Enzyme, {shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import React from 'react';
+import Enzyme, {shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-import ArtistQuestionScreen from "./artist-question-screen.jsx";
+import ArtistQuestionScreen from './artist-question-screen.jsx';
 
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+Enzyme.configure({adapter: new Adapter()});
 
 const mock = {
   question: {
@@ -42,6 +40,7 @@ it(`ArtistQuestionScreen - Click on user answer returns the correct callback (qu
       <ArtistQuestionScreen
         question={question}
         onAnswer={onAnswer}
+        renderPlayer={() => {}}
       />
   );
 

@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { GameType } from "../../const.js";
+import {GameType} from '../../const.js';
 
-import Header from "../header/header.jsx";
+import Header from '../header/header.jsx';
 
 const GameScreen = (props) => {
   const {type, children} = props;

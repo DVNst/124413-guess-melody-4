@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import {GameType} from "../../const.js";
+import {GameType} from '../../const.js';
 
 const ArtistQuestionScreen = (props) => {
   const {question, onAnswer, renderPlayer} = props;

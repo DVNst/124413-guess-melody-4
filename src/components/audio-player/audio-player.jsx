@@ -1,4 +1,4 @@
-import React, {PureComponent, createRef} from "react";
+import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 
 class AudioPlayer extends PureComponent {

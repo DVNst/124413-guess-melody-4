@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import GenreQuestionScreen from "./genre-question-screen.jsx";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import GenreQuestionScreen from './genre-question-screen.jsx';
 
 const question = {
   type: `genre`,
@@ -24,12 +24,9 @@ it(`Render GenreQuestionScreen`, () => {
   const tree = renderer.create(
       <GenreQuestionScreen
         question={question}
-        onAnswer={() => { }}
-      />, {
-        createNodeMock: () => {
-          return {};
-        }
-      })
+        onAnswer={() => {}}
+        renderPlayer={() => {}}
+      />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

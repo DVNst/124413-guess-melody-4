@@ -1,8 +1,8 @@
-import React from "react";
-import Enzyme, {shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import React from 'react';
+import Enzyme, {shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-import GenreQuestionScreen from "./genre-question-screen.jsx";
+import GenreQuestionScreen from './genre-question-screen.jsx';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -43,6 +43,7 @@ it(`GenreQuestionScreen - Click on user answer returns the correct callback (que
       <GenreQuestionScreen
         question={question}
         onAnswer={onAnswer}
+        renderPlayer={() => {}}
       />
   );
 

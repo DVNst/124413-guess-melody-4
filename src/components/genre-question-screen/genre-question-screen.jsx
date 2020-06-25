@@ -1,7 +1,7 @@
-import React, {PureComponent} from "react";
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
-import {GameType} from "../../const.js";
+import {GameType} from '../../const.js';
 
 class GenreQuestionScreen extends PureComponent {
   constructor(props) {
