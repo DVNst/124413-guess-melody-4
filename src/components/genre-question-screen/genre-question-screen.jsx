@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 
 import {GameType} from "../../const.js";
 
-import Header from "../header/header.jsx";
-import AudioPlayer from "../audio-player/audio-player.jsx";
-
 class GenreQuestionScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -16,49 +13,43 @@ class GenreQuestionScreen extends PureComponent {
   }
 
   render() {
-    const {question, onAnswer} = this.props;
-    const {answers} = question;
     const {userAnswers} = this.state;
+    const {question, onAnswer, renderPlayer} = this.props;
+    const {answers} = question;
 
     return (
-      <section className="game game--genre">
-        <Header />
-        <section className="game__screen">
-          <h2 className="game__title">Выберите инди-рок треки</h2>
-          <form
-            className="game__tracks"
-            onSubmit={(evt) => {
-              evt.preventDefault();
-              onAnswer(question, this.state.userAnswers);
-            }}
-          >
-            {answers.map((answer, i) => (
-              <div className="track" key={i}>
-                <AudioPlayer
-                  isPlaying={i === 1}
-                  src={answer.src}
+      <section className="game__screen">
+        <h2 className="game__title">Выберите инди-рок треки</h2>
+        <form
+          className="game__tracks"
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            onAnswer(question, this.state.userAnswers);
+          }}
+        >
+          {answers.map((answer, i) => (
+            <div className="track" key={i}>
+              {renderPlayer(answer.src, i)}
+              <div className="game__answer">
+                <input
+                  className="game__input visually-hidden"
+                  type="checkbox"
+                  name="answer"
+                  defaultValue={`answer-${i}`}
+                  id={`answer-${i}`}
+                  onChange={(evt) => {
+                    userAnswers[i] = evt.target.checked;
+                    this.setState({
+                      userAnswers: [...userAnswers],
+                    });
+                  }}
                 />
-                <div className="game__answer">
-                  <input
-                    className="game__input visually-hidden"
-                    type="checkbox"
-                    name="answer"
-                    defaultValue={`answer-${i}`}
-                    id={`answer-${i}`}
-                    onChange={(evt) => {
-                      userAnswers[i] = evt.target.checked;
-                      this.setState({
-                        userAnswers: [...userAnswers],
-                      });
-                    }}
-                  />
-                  <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
-                </div>
+                <label className="game__check" htmlFor={`answer-${i}`}>Отметить</label>
               </div>
-            ))}
-            <button className="game__submit button" type="submit">Ответить</button>
-          </form>
-        </section>
+            </div>
+          ))}
+          <button className="game__submit button" type="submit">Ответить</button>
+        </form>
       </section>
     );
   }
@@ -74,6 +65,7 @@ GenreQuestionScreen.propTypes = {
     type: PropTypes.oneOf([GameType.ARTIST, GameType.GENRE]).isRequired,
   }).isRequired,
   onAnswer: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
 };
 
 export default GenreQuestionScreen;

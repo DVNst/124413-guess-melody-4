@@ -29,6 +29,7 @@ class AudioPlayer extends PureComponent {
 
   render() {
     const {isLoading, isPlaying} = this.state;
+    const {onPlayButtonClick} = this.props;
 
     return (
       <React.Fragment>
@@ -36,7 +37,10 @@ class AudioPlayer extends PureComponent {
           className={`track__button track__button--${isPlaying ? `pause` : `play`}`}
           type="button"
           disabled={isLoading}
-          onClick={() => this.setState({isPlaying: !this.state.isPlaying})}
+          onClick={() => {
+            this.setState({isPlaying: !this.state.isPlaying});
+            onPlayButtonClick();
+          }}
         />
         <div className="track__status">
           <audio
@@ -49,8 +53,9 @@ class AudioPlayer extends PureComponent {
 
   componentDidUpdate() {
     const audio = this._audioRef.current;
+    const {isPlaying} = this.props;
 
-    if (this.state.isPlaying) {
+    if (isPlaying) {
       audio.play();
     } else {
       audio.pause();
@@ -65,12 +70,12 @@ class AudioPlayer extends PureComponent {
     audio.onpause = null;
     audio.ontimeupdate = null;
     audio.src = ``;
-    audio = null;
   }
 }
 
 AudioPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
   src: PropTypes.string.isRequired,
 };
 
