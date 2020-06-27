@@ -27,6 +27,27 @@ class AudioPlayer extends PureComponent {
     audio.ontimeupdate = () => this.setState({progress: audio.currentTime});
   }
 
+  componentDidUpdate() {
+    const audio = this._audioRef.current;
+    const {isPlaying} = this.props;
+
+    if (isPlaying) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }
+
+  componentWillUnmount() {
+    const audio = this._audioRef.current;
+
+    audio.oncanplaythrough = null;
+    audio.onplay = null;
+    audio.onpause = null;
+    audio.ontimeupdate = null;
+    audio.src = ``;
+  }
+
   render() {
     const {isLoading, isPlaying} = this.state;
     const {onPlayButtonClick} = this.props;
@@ -49,27 +70,6 @@ class AudioPlayer extends PureComponent {
         </div>
       </React.Fragment>
     );
-  }
-
-  componentDidUpdate() {
-    const audio = this._audioRef.current;
-    const {isPlaying} = this.props;
-
-    if (isPlaying) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-  }
-
-  componentWillUnmount() {
-    const audio = this._audioRef.current;
-
-    audio.oncanplaythrough = null;
-    audio.onplay = null;
-    audio.onpause = null;
-    audio.ontimeupdate = null;
-    audio.src = ``;
   }
 }
 
