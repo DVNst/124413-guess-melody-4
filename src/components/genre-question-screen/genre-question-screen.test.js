@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import GenreQuestionScreen from "./genre-question-screen.jsx";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import GenreQuestionScreen from './genre-question-screen.jsx';
 
 const question = {
   type: `genre`,
@@ -20,11 +20,12 @@ const question = {
   }],
 };
 
-it(`Render renderer`, () => {
+it(`Render GenreQuestionScreen`, () => {
   const tree = renderer.create(
       <GenreQuestionScreen
         question={question}
-        onAnswer={() => { }}
+        onAnswer={() => {}}
+        renderPlayer={() => {}}
       />)
     .toJSON();
 

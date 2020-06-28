@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import ArtistQuestionScreen from "./artist-question-screen.jsx";
+import React from 'react';
+import renderer from 'react-test-renderer';
+import ArtistQuestionScreen from './artist-question-screen.jsx';
 
 const question = {
   type: `artist`,
@@ -20,11 +20,12 @@ const question = {
   }],
 };
 
-it(`Render renderer`, () => {
+it(`Render ArtistQuestionScreen`, () => {
   const tree = renderer.create(
       <ArtistQuestionScreen
         question={question}
-        onAnswer={() => { }}
+        onAnswer={() => {}}
+        renderPlayer={() => {}}
       />)
     .toJSON();
 
