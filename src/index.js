@@ -5,12 +5,7 @@ import {Provider} from 'react-redux';
 
 import App from './components/app/app.jsx';
 
-import questions from './mocks/questions.js';
 import {reducer} from './reducer.js';
-
-const Settings = {
-  ERRORS_COUNT: 3
-};
 
 const store = createStore(
     reducer,
@@ -19,10 +14,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        errorsCount={Settings.ERRORS_COUNT}
-        questions={questions}
-      />
+      <App/>
     </Provider>,
     document.querySelector(`#root`)
 );

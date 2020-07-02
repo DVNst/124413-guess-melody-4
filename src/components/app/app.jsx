@@ -16,15 +16,14 @@ import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player.jsx'
 const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
 const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
 
-const App = ({errorsCount, questions, onUserAnswer, onWelcomeButtonClick, step}) => {
+const App = ({maxMistakes, questions, onUserAnswer, onWelcomeButtonClick, step}) => {
   const _renderGameScreen = () => {
-    // const {errorsCount, questions, onUserAnswer, onWelcomeButtonClick, step} = props;
     const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
       return (
         <WelcomeScreen
-          errorsCount={errorsCount}
+          errorsCount={maxMistakes}
           onWelcomeButtonClick={onWelcomeButtonClick}
         />
       );
@@ -84,7 +83,7 @@ const App = ({errorsCount, questions, onUserAnswer, onWelcomeButtonClick, step})
 };
 
 App.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
+  maxMistakes: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   onWelcomeButtonClick: PropTypes.func.isRequired,
@@ -93,6 +92,8 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   step: state.step,
+  maxMistakes: state.maxMistakes,
+  questions: state.questions,
 });
 
 const mapDispatchToProps = (dispatch) => ({

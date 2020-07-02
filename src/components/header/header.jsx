@@ -1,6 +1,9 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
-const Header = () => {
+import Mistakes from '../mistakes/mistakes.jsx';
+
+const Header = ({mistakes}) => {
   return (
     <header className="game__header">
       <a className="game__back" href="#">
@@ -10,13 +13,13 @@ const Header = () => {
       <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
         <circle className="timer__line" cx={390} cy={390} r={370} style={{filter: `url(#blur)`, transform: `rotate(-90deg) scaleY(-1)`, transformOrigin: `center`}} />
       </svg>
-      <div className="game__mistakes">
-        <div className="wrong" />
-        <div className="wrong" />
-        <div className="wrong" />
-      </div>
+      <Mistakes count={mistakes} />
     </header>
   );
+};
+
+Header.propTypes = {
+  mistakes: PropTypes.number.isRequired,
 };
 
 export default Header;
