@@ -4,7 +4,7 @@ import Header from './header.jsx';
 
 it(`Render renderer`, () => {
   const tree = renderer.create(
-      <Header/>)
+      <Header mistakes={3}/>)
   .toJSON();
 
   expect(tree).toMatchSnapshot();
