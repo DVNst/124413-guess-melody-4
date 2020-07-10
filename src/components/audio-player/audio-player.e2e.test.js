@@ -6,25 +6,22 @@ import AudioPlayer from './audio-player.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`AudioPlayer - when you click the Play button on a component, the button changes (pause / play)`, () => {
-  window.HTMLMediaElement.prototype.pause = () => {};
+it(`AudioPlayer - Click by Play button calls callback`, () => {
+  const handlePlayButtonClick = jest.fn();
 
   const audioPlayer = mount(
       <AudioPlayer
         isPlaying={false}
+        isLoading={false}
         src={`path`}
-        onPlayButtonClick={() => {}}
-      />
+        onPlayButtonClick={handlePlayButtonClick}
+      >
+        <audio />
+      </AudioPlayer>
   );
 
-  let buttonPlay = audioPlayer.find(`button`);
-  audioPlayer.setState({isLoading: false});
+  const trackButton = audioPlayer.find(`.track__button`);
+  trackButton.simulate(`click`);
 
-  expect(buttonPlay.hasClass(`track__button--pause`)).toBe(false);
-  expect(buttonPlay.hasClass(`track__button--play`)).toBe(true);
-
-  buttonPlay.simulate(`click`);
-  buttonPlay = audioPlayer.find(`button`);
-  expect(buttonPlay.hasClass(`track__button--pause`)).toBe(true);
-  expect(buttonPlay.hasClass(`track__button--play`)).toBe(false);
+  expect(handlePlayButtonClick).toHaveBeenCalledTimes(1);
 });

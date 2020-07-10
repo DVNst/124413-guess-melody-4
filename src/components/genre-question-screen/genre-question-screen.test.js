@@ -26,6 +26,8 @@ it(`Render GenreQuestionScreen`, () => {
         question={question}
         onAnswer={() => {}}
         renderPlayer={() => {}}
+        userAnswers={[false, false, false, false]}
+        onChange={() => {}}
       />)
     .toJSON();
 

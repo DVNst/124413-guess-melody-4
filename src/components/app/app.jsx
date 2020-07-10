@@ -9,22 +9,43 @@ import {GameType} from '../../const.js';
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen.jsx';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen.jsx';
+import GameOverScreen from "../game-over-screen/game-over-screen.jsx";
+import WinScreen from "../win-screen/win-screen.jsx";
 import GameScreen from '../game-screen/game-screen.jsx';
 
-import withAudioPlayer from '../../hocs/with-audio-player/with-audio-player.jsx';
+import withActivePlayer from '../../hocs/with-active-player/with-active-player.js';
+import withUserAnswer from "../../hocs/with-user-answer/with-user-answer.js";
 
-const GenreQuestionScreenWrapped = withAudioPlayer(GenreQuestionScreen);
-const ArtistQuestionScreenWrapped = withAudioPlayer(ArtistQuestionScreen);
+const GenreQuestionScreenWrapped = withActivePlayer(withUserAnswer(GenreQuestionScreen));
+const ArtistQuestionScreenWrapped = withActivePlayer(ArtistQuestionScreen);
 
-const App = ({maxMistakes, questions, onUserAnswer, onWelcomeButtonClick, step}) => {
+const App = ({maxMistakes, mistakes, questions, onUserAnswer, onWelcomeButtonClick, resetGame, step}) => {
   const _renderGameScreen = () => {
     const question = questions[step];
 
-    if (step === -1 || step >= questions.length) {
+    if (step === -1) {
       return (
         <WelcomeScreen
           errorsCount={maxMistakes}
           onWelcomeButtonClick={onWelcomeButtonClick}
+        />
+      );
+    }
+
+    if (mistakes >= maxMistakes) {
+      return (
+        <GameOverScreen
+          onReplayButtonClick={resetGame}
+        />
+      );
+    }
+
+    if (step >= questions.length) {
+      return (
+        <WinScreen
+          questionsCount={questions.length}
+          mistakesCount={mistakes}
+          onReplayButtonClick={resetGame}
         />
       );
     }
@@ -66,15 +87,31 @@ const App = ({maxMistakes, questions, onUserAnswer, onWelcomeButtonClick, step})
           {_renderGameScreen()}
         </Route>
         <Route exact path='/dev-artist'>
-          <ArtistQuestionScreenWrapped
-            question={questions[1]}
-            onAnswer={() => {}}
-          />
+          <GameScreen type={GameType.ARTIST}>
+            <ArtistQuestionScreenWrapped
+              question={questions[1]}
+              onAnswer={() => {}}
+            />
+          </GameScreen>
         </Route>
         <Route exact path='/dev-genre'>
-          <GenreQuestionScreenWrapped
-            question={questions[0]}
-            onAnswer={() => {}}
+          <GameScreen type={GameType.GENRE}>
+            <GenreQuestionScreenWrapped
+              question={questions[0]}
+              onAnswer={() => {}}
+            />
+          </GameScreen>
+        </Route>
+        <Route exact path='/game-over'>
+          <GameOverScreen
+            onReplayButtonClick={() => {}}
+          />
+        </Route>
+        <Route exact path='/game-win'>
+          <WinScreen
+            questionsCount={10}
+            mistakesCount={1}
+            onReplayButtonClick={() => {}}
           />
         </Route>
       </Switch>
@@ -84,9 +121,11 @@ const App = ({maxMistakes, questions, onUserAnswer, onWelcomeButtonClick, step})
 
 App.propTypes = {
   maxMistakes: PropTypes.number.isRequired,
+  mistakes: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
   onUserAnswer: PropTypes.func.isRequired,
   onWelcomeButtonClick: PropTypes.func.isRequired,
+  resetGame: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
 };
 
@@ -94,6 +133,7 @@ const mapStateToProps = (state) => ({
   step: state.step,
   maxMistakes: state.maxMistakes,
   questions: state.questions,
+  mistakes: state.mistakes,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -103,6 +143,9 @@ const mapDispatchToProps = (dispatch) => ({
   onUserAnswer(question, answer) {
     dispatch(ActionCreator.incrementStep());
     dispatch(ActionCreator.incrementMistake(question, answer));
+  },
+  resetGame() {
+    dispatch(ActionCreator.resetGame());
   },
 });
 
